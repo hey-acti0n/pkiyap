@@ -15,8 +15,6 @@ class GroupStudent:
         self.student_id = student_id
         self.group_id = group_id
 
-
-
 students = [
     Student(student_id=1, surname="Андреев", scholarship=1500, group_id=1),
     Student(student_id=2, surname="Борисов", scholarship=1200, group_id=1),
@@ -25,13 +23,11 @@ students = [
     Student(student_id=5, surname="Васильева", scholarship=1100, group_id=2)
 ]
 
-
 groups = [
     Group(group_id=1, group_name="Группа А"),
     Group(group_id=2, group_name="Группа Б"),
     Group(group_id=3, group_name="Группа В")
 ]
-
 
 group_students = [
     GroupStudent(student_id=1, group_id=1),
@@ -40,7 +36,6 @@ group_students = [
     GroupStudent(student_id=4, group_id=3),
     GroupStudent(student_id=5, group_id=2)
 ]
-
 
 result_1 = [
     (student.surname, next(group.group_name for group in groups if group.group_id == student.group_id))
