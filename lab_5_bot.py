@@ -4,14 +4,14 @@ import math
 bot = telebot.TeleBot('7677437617:AAGR5BlPo7j0ughOpIlKLSb9COdmoOdpJ68')
 @bot.message_handler(commands=['start'])
 def start(message):
-    # Создаём клавиатуру
+
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
     button1 = KeyboardButton("регистрация")
     button2 = KeyboardButton("реши биквдратное уравнение")
 
     markup.add(button1, button2)
 
-    # Отправляем клавиатуру с сообщением
+
     bot.send_message(message.chat.id, "Выберите опцию:", reply_markup=markup)
 
 
@@ -31,7 +31,7 @@ def handle(message):
     else:
         bot.send_message(message.from_user.id, 'Напиши регистрация')
 
-def get_name(message): #получаем фамилию
+def get_name(message): 
     global name
     name = message.text
     bot.send_message(message.from_user.id, 'Какая у тебя фамилия?')
@@ -50,6 +50,7 @@ def get_age(message):
              age = int(message.text) 
         except Exception:
              bot.send_message(message.from_user.id, 'Цифрами, пожалуйста')
+             
         bot.send_message(message.from_user.id, 'Тебе '+str(age)+' лет, тебя зовут '+name+' '+surname+'?')
 
 

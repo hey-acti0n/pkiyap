@@ -22,8 +22,8 @@ goods = [
    {'title': 'Диван для отдыха', 'price': 5300, 'color': 'black'}
 ]
 
-print(str(list(field(goods, 'title')))[1:-1]) #должен выдавать 'Ковер', 'Диван для отдыха'
-print(str(list(field(goods, 'title', 'price')))[1:-1]) #должен выдавать {'title': 'Ковер', 'price': 2000}, {'title': 'Диван для отдыха', 'price': 5300}
+print(str(list(field(goods, 'title')))[1:-1]) 
+print(str(list(field(goods, 'title', 'price')))[1:-1])
 
 
 

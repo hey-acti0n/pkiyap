@@ -5,7 +5,6 @@ import (
 	"math"
 )
 
-// Функция для решения квадратного уравнения
 func solveQuadratic(a, b, c float64) (float64, float64, bool) {
 	discriminant := b*b - 4*a*c
 
@@ -19,9 +18,8 @@ func solveQuadratic(a, b, c float64) (float64, float64, bool) {
 	return x1, x2, true
 }
 
-// Основная функция для решения биквадратного уравнения
 func solveBiquadratic(a, b, c float64) {
-	// Решаем квадратное уравнение относительно y: ay^2 + by + c = 0
+
 	y1, y2, hasSolutions := solveQuadratic(a, b, c)
 
 	if !hasSolutions {
@@ -29,7 +27,6 @@ func solveBiquadratic(a, b, c float64) {
 		return
 	}
 
-	// Ищем x: x^2 = y
 	var solutions []float64
 
 	if y1 >= 0 {

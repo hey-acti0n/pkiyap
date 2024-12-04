@@ -12,7 +12,7 @@ def solve_biquadratic(a, b, c):
     
     solutions = []
     
-    # Теперь решаем для x: x^2 = y
+
     if y1 >= 0:
         solutions.append(math.sqrt(y1))
         solutions.append(-math.sqrt(y1))
@@ -26,7 +26,7 @@ def solve_biquadratic(a, b, c):
     
     return solutions
 
-# Пример использования
+
 a = float(input("Введите коэффициент a: "))
 b = float(input("Введите коэффициент b: "))
 c = float(input("Введите коэффициент c: "))
