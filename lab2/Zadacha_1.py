@@ -16,7 +16,6 @@ def field(items, *args):
             if not all_none:
                 yield dict
 
-# Пример:
 goods = [
    {'title': 'Ковер', 'price': 2000, 'color': 'green'},
    {'title': 'Диван для отдыха', 'price': 5300, 'color': 'black'}

@@ -1,10 +1,10 @@
 import json
-from test import gen_random
+import random
 from Zadacha_5 import print_result
 from Zadacha_6 import cm_timer_1
 
 
-path = "C:\Users\Kirsch\Desktop\Laba_2\data.json"   
+path = "/Users/acti0n/Documents/proga/lab2/data.json"   
 
 with open(path, encoding='utf-8') as f:
     data = json.load(f)
@@ -23,7 +23,7 @@ def f3(arg):
 
 @print_result
 def f4(arg):
-    salaries = gen_random(len(arg), 100000, 2000000)  # Generate salaries for each employee individually
+    salaries = [random.randint(100000, 2000000) for _ in range(len(arg))] 
     return ['{} зарплата {}'.format(job, salary) for job, salary in zip(arg, salaries)]
 
 if __name__ == '__main__':
