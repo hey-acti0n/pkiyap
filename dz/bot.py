@@ -111,11 +111,20 @@ def pars_html(message):
         xpath_query = f"/html/body/div[1]/div[16]/div[2]/div/div/div[4]/div/div/div/div[1]/div[{i}]/div[2]/div[1]/div[1]/a"
         element = tree.xpath(xpath_query)
 
+
         # Проверка и извлечение текста
         if element and len(element) > 0:
             text = element[0].text_content()  # Извлечение текста из элемента
-            bot.send_message(message.from_user.id, text)
         else:
             print("Песня не найдена.")
 
+        xpath_query1 = f"/html/body/div[1]/div[16]/div[2]/div/div/div[4]/div/div/div/div[1]/div[{i}]/div[2]/div[1]/div[2]/span/a"
+        element1 = tree.xpath(xpath_query1)
+        if element1 and len(element1) > 0:
+            text1 = element1[0].text_content()  # Извлечение текста из элемента
+        else:
+            print("Песня не найдена.")
+        
+        bot.send_message(message.from_user.id, text+'by  '+text1)
 bot.polling(none_stop=True, interval=0)
+
