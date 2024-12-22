@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 import time
+from lxml import html
 
 bot = telebot.TeleBot('7715967994:AAFwur81tcHy2ap9eTh-_RVOA6mT3i7QZq8')
 @bot.message_handler(commands=['start'])
@@ -61,7 +62,7 @@ def pars(message):
     url = message.text
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome()
-
+    print(url)
 
     try:
         driver.get(url=url)
@@ -86,8 +87,35 @@ def pars(message):
     finally:
             driver.close()
             driver.quit()
-            bot.send_document(message.from_user.id, file)
+            send_html(message)
+            time.sleep(1)
+            pars_html(message)
+    
+def send_html(message):
+    try:
+        with open("/Users/acti0n/Documents/proga/dz/pars_code_YANDEX_music.html", "rb") as file:
+            bot.send_document(message.from_user.id, file, caption="Вот ваш HTML файл")
+    except Exception as ex:
+        bot.send_message(message.from_user.id, f"Произошла ошибка при отправке файла: {str(ex)}")
 
+def pars_html(message):
+    try:
+        with open('/Users/acti0n/Documents/proga/dz/pars_code_YANDEX_music.html', 'r', encoding='utf-8') as file:
+            content = file.read()
+            bot.send_message(message.from_user.id, 'Плейлист найден, сейчас пришлю первые 10 песен')
+    except Exception as ex:
+        bot.send_message(message.from_user.id, f"Произошла ошибка при отправке файла: {str(ex)}")
+    time.sleep(1)
+    tree = html.fromstring(content)
+    for i in range(1, 10):
+        xpath_query = f"/html/body/div[1]/div[16]/div[2]/div/div/div[4]/div/div/div/div[1]/div[{i}]/div[2]/div[1]/div[1]/a"
+        element = tree.xpath(xpath_query)
 
+        # Проверка и извлечение текста
+        if element and len(element) > 0:
+            text = element[0].text_content()  # Извлечение текста из элемента
+            bot.send_message(message.from_user.id, text)
+        else:
+            print("Песня не найдена.")
 
 bot.polling(none_stop=True, interval=0)
